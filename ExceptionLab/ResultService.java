@@ -1,0 +1,63 @@
+package ExceptionLab;
+
+public class ResultService {
+	
+	// Incident 1
+    public void sendResult(String email) {
+    	if(email == null) {
+    		System.out.println("No email on file, result not sent");
+    		return;
+    	}
+    	
+        System.out.println("Result sent to " + email.toLowerCase());
+    	
+    	
+    }
+
+    // Incident 2
+    public int classAverage(int totalMarks, int studentCount) {
+    	try {
+    		return totalMarks / studentCount;
+    	}
+    	catch (ArithmeticException e) {
+    		System.out.println("No student in class yet");
+    		return 0;
+    	}
+    }
+
+    // Incident 3
+    public int readMarks(String input) {
+    	try {
+    		return Integer.parseInt(input);
+    	}
+    	catch (NumberFormatException e) {
+    		System.out.println("Marks must be a number, got: eighty ");
+    		return 0;
+    	}
+    }
+
+    // Incident 4
+    public String getSubject(int index) {
+    	try {
+	        String[] subjects = {"Maths", "Physics", "Chemistry"};
+	        return subjects[index];
+    	}
+    	catch (ArrayIndexOutOfBoundsException e) {
+    		//System.out.println("The subject indexes are from 0 to 2");
+    		return "Unknown Subject";
+    	}
+        
+    }
+
+    // Incidents 5 and 6
+    public void recordMarks(Student student, int marks){
+    	if (marks < 0 || marks >100) {
+    		throw new IllegalArgumentException("Marks must be between 0 and 100, got: " + marks);
+    	}
+        student.marks = marks;
+    }
+    
+    
+
+
+}
